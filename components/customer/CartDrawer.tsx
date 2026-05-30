@@ -28,7 +28,7 @@ export default function CartDrawer({ open, onClose }: CartDrawerProps) {
   // Fetch recommendations based on cart contents
   useEffect(() => {
     if (!open || items.length === 0) return;
-    const categoryIds = [...new Set(items.map((i) => i.menu_item.category_id))].filter(Boolean);
+    const categoryIds = Array.from(new Set(items.map((i) => i.menu_item.category_id))).filter(Boolean);
     const itemIds = items.map((i) => i.menu_item.id);
     const params = new URLSearchParams();
     if (categoryIds.length) params.set("categoryIds", categoryIds.join(","));
